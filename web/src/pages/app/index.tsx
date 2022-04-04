@@ -7,6 +7,8 @@ const Home = () => {
   return (
     <>
       <h1>Olá, {user?.name}!</h1>
+
+      <pre>{JSON.stringify(user, null, 2)}</pre>
     </>
   );
 };
