@@ -13,13 +13,17 @@ datasource db {
 model Customer {
   id String @id @default(uuid())
 
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @default(now()) @updatedAt
-  Purschase Purschase[]
+  authUserId String? @unique
+
+  Purchase Purchase[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Product {
   id String @id @default(uuid())
+
 
   title String
   slug  String @unique
@@ -27,19 +31,19 @@ model Product {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
-  purchasedOn Purschase[]
+  purchasedOn Purchase[]
 }
 
-enum PurschaseStatus {
+enum PurchaseStatus {
   PENDING
   APPROVED
   FAILED
 }
 
-model Purschase {
+model Purchase {
   id String @id @default(uuid())
 
-  status PurschaseStatus @default(PENDING)
+  status PurchaseStatus @default(PENDING)
 
   customer   Customer @relation(fields: [customerId], references: [id])
   customerId String
