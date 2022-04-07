@@ -8,6 +8,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { ProductsService } from 'src/services/products.service';
 import { PurchasesService } from 'src/services/purchases.service';
 import { PurchasesResolver } from 'src/graphql/resolvers/purchases.resolver';
+import { CustomersService } from 'src/services/customers.service';
 
 @Module({
   imports: [
@@ -27,6 +28,9 @@ import { PurchasesResolver } from 'src/graphql/resolvers/purchases.resolver';
     // Purchases
     PurchasesService,
     PurchasesResolver,
+
+    // Customers
+    CustomersService,
   ],
 })
 export class HttpModule {}

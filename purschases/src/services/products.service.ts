@@ -25,11 +25,11 @@ export class ProductsService {
   async createProduct({ title }: CreateProductParams) {
     const slug = slugify(title, { lower: true });
 
-    const productWithSamgeSlug = await this.prisma.product.findUnique({
+    const productWithSameSlug = await this.prisma.product.findUnique({
       where: { slug },
     });
 
-    if (productWithSamgeSlug) {
+    if (productWithSameSlug) {
       throw new Error('Product with same slug already exists');
     }
 
