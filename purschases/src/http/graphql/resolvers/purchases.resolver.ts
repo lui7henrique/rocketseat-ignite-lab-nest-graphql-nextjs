@@ -6,6 +6,7 @@ import {
   Query,
   ResolveField,
   Resolver,
+  ResolveReference,
 } from '@nestjs/graphql';
 import { AuthorizationGuard } from 'src/http/auth/authorization.guard';
 import { AuthUser, CurrentUser } from 'src/http/auth/current-user';
@@ -57,5 +58,10 @@ export class PurchasesResolver {
       customerId: customer.id,
       productId: data.productId,
     });
+  }
+
+  @ResolveReference()
+  resolveReference(reference: { authUserId: string }) {
+    return this.customersService.getCustomerByAuthUserId(reference.authUserId);
   }
 }
